@@ -1,0 +1,43 @@
+.contactForm {
+  display: flex;
+  flex-direction: column;
+  max-width: 330px;
+  padding: 15px;
+  border: 1px solid black;
+  border-radius: 12px;
+  margin: 0 auto;
+  margin-bottom: 35px;
+}
+.contactForm button{
+    width: 110px;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 12px;
+    margin: 0 auto;
+}
+
+.formLabel {
+  display: flex;
+  flex-direction: column;
+}
+
+.formLabel input {
+  margin-bottom: 8px;
+  border-radius: 5px;
+  border: 1px solid black;
+  padding: 8px;
+  margin-top: 9px;
+}
+
+.Error{
+    background-color: rgb(231, 118, 118);
+    color: black;
+    font-size: 15px;
+    padding: 15px;
+    font-weight: 700;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 8px;
+}
