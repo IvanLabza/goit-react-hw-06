@@ -1,6 +1,35 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { rootReducer } from "./reducer";
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from "redux-persist";
 
-const store = configureStore({
-  reducer: rootReducer,
+
+import storage from "redux-persist/lib/storage";
+
+const productDetailsConfig = {
+  key: "productDetails",
+  storage,
+  whitelist: ["counter"],
+  //   blacklist: ['contacts', "isError", "isLoading", "productData"],
+};
+
+export const store = configureStore({
+  reducer: {
+    productDetails: persistReducer(productDetailsConfig, productDetailsReducer),
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
 });
+
+export const persister = persistStore(store);
