@@ -1,4 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
+import { contactsSliceReducer } from "./contactsSlice";
+import { changeFilterReducer } from "./filtersSlice";
 import {
   persistStore,
   persistReducer,
@@ -9,20 +11,18 @@ import {
   PURGE,
   REGISTER,
 } from "redux-persist";
-
-
 import storage from "redux-persist/lib/storage";
 
-const productDetailsConfig = {
-  key: "productDetails",
+const contactsConfig = {
+  key: "contacts",
   storage,
-  whitelist: ["counter"],
-  //   blacklist: ['contacts', "isError", "isLoading", "productData"],
+  whitelist: ["items"],
 };
 
 export const store = configureStore({
   reducer: {
-    productDetails: persistReducer(productDetailsConfig, productDetailsReducer),
+    contacts: persistReducer(contactsConfig, contactsSliceReducer),
+    filters: changeFilterReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
@@ -32,4 +32,4 @@ export const store = configureStore({
     }),
 });
 
-export const persister = persistStore(store);
+export const persistor = persistStore(store);

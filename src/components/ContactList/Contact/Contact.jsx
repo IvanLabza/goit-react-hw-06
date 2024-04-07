@@ -1,16 +1,19 @@
 import React from "react";
 import css from "../ContactList.module.css";
+import { useDispatch } from "react-redux";
+import { deleteContact } from "../../../redux/contactsSlice";
 
-const Contact = ({ contact, handleDelete }) => {
+const Contact = ({ contactName, contactNumber, contactId }) => {
+  const dispatch = useDispatch();
   return (
     <div>
       <div className={css.wraps}>
-        <span>{contact.name}</span>
-        <span>{contact.number}</span>
+        <span>{contactName}</span>
+        <span>{contactNumber}</span>
       </div>
       <button
         onClick={() => {
-          handleDelete(contact.id);
+          dispatch(deleteContact(contactId));
         }}
         type="button"
       >
